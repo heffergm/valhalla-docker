@@ -31,23 +31,6 @@ RUN apt-get install -y \
 RUN pip install --upgrade pip
 RUN pip install boto filechunkio awscli
 
-# build or install from ppa
-#cd ${BASEDIR}/src && rm -rf ./*
-#
-#RUN git clone --depth=1 --recurse-submodules --single-branch --branch=${MJOLNIR_BRANCH} ${VALHALLA_GITHUB}/mjolnir
-#RUN git clone --depth=1 --recurse-submodules --single-branch --branch=${TOOLS_BRANCH} ${VALHALLA_GITHUB}/tools
-#
-#WORKDIR ${BASEDIR}/src/mjolnir
-#RUN scripts/dependencies.sh ${BASEDIR}/src
-#RUN scripts/install.sh
-#RUN make -j2 && make -j2 install
-#
-#WORKDIR ${BASEDIR}/src/tools
-#RUN scripts/dependencies.sh ${BASEDIR}/src
-#RUN scripts/install.sh
-#RUN make -j2 && make -j2 install
-#
-#ldconfig
 RUN add-apt-repository ppa:valhalla-routing/valhalla
 RUN add-apt-repository ppa:kevinkreiser/prime-server
 RUN apt-get update && apt-get install -y --force-yes valhalla-bin
